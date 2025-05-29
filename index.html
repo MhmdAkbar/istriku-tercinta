@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ucapan untuk Istriku tercinta</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    .font-great-vibes { font-family: 'Great Vibes', cursive; }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: fall 5s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(45deg); opacity: 0; }
+    }
+
+    .fade-out { opacity: 0; transition: opacity 0.5s ease-out; }
+    .fade-in { opacity: 1; transition: opacity 0.5s ease-in; }
+  </style>
+</head>
+<body class="bg-pink-100 overflow-hidden relative min-h-screen flex items-center justify-center p-4">
+
+  <!-- Hati jatuh -->
+  <div id="hearts-container"></div>
+
+  <!-- Musik -->
+  <audio id="bg-music" autoplay loop>
+    <source src="/src/audio/hbd.mp3" type="audio/mpeg">
+    Browsermu tidak mendukung audio 😢
+  </audio>
+
+  <!-- Kartu -->
+<div id="card" class="bg-white rounded-2xl shadow-xl max-w-md w-full text-center p-6 fade-in transition-all duration-500">
+  <h1 id="main-title" class="text-blue-500 text-4xl font-great-vibes mb-6 select-none">
+    Sedikit harapan untuk istriku
+  </h1>
+  <h2 id="title" class="text-pink-600 text-3xl md:text-4xl font-great-vibes mb-4">
+    Mabruk alfa mabruk istriku tercinta ❤️
+  </h2>
+  <div id="message-container" class="max-h-48 overflow-y-auto text-gray-700 text-base md:text-lg mb-6 px-2">
+    <p id="message" class="whitespace-pre-line"></p>
+  </div>
+  <div class="flex flex-col gap-3 items-center" id="buttons">
+    <button onclick="nextMessage()" class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-full transition duration-300">
+      ➡️ Klik ini bunda sayang
+    </button>
+  </div>
+</div>
+
+<button onclick="document.getElementById('bg-music').play()" 
+        class="fixed bottom-4 right-4 bg-white p-1 text-xl rounded-full shadow-md z-50">
+  <span class="text-sm text-blue-300">music play</span>▶️
+</button>
+  <script>
+
+// Jalankan fadeIn saat user klik layar (karena autoplay sering dibatasi browser)
+window.addEventListener('click', () => {
+  fadeInMusic(audio);
+});
+
+    // Efek hati
+    const heartsContainer = document.getElementById('hearts-container');
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.animationDuration = `${3 + Math.random() * 2}s`;
+      heart.style.opacity = Math.random();
+      heartsContainer.appendChild(heart);
+    }
+
+const messages = [
+  {
+    title: 'Selamat Ulang Tahun yang ke-22, Sayang!',
+    message: 'Hari ini, di ulang tahunmu yang ke-22, hatiku penuh dengan kebahagiaan tak terhingga. Aku bersyukur setiap detik memilikimu sebagai pendamping hidupku, cinta sejatiku.'
+  },
+  {
+    title: 'halo istriku tersayang👋',
+    message: "ini keempat kalinya aku membuat ucapan ini untukmu 😊 <br> ingat ga 😋"
+  },
+   {
+    title: 'sedikit kisah perjalan kita❤️',
+    message: "2022 awal kita dekat❤️ <br> 2023 kita menikah💑 <br> 2024 si kembar malaikat kecil baru lahir 👼👼 <br> dan sekarang 2025 kita sudah hampir berjalan 2 tahun usia pernikahan ❤️"
+  },
+  {
+    title: 'Aku hanya ingin bilang kalau aku Sangat Bangga Padamu istriku 💖',
+    message: 'Kamu adalah istri luar biasa 💕. Aku sangat bangga melihat semua yang sudah kamu capai dan jalani setiap hari.'
+  },
+  {
+    title: 'Perjuanganmu Mengagumkan ✨',
+    message: 'Aku tahu betapa beratnya mengurus dua anak kita Zayyan dan Zayhan, dua malaikat kecil kita👼👼 Tapi kamu tetap kuat dan terus berjuang dengan penuh cinta.'
+  },
+  {
+    title: 'Kasihmu Adalah Anugerah Terindah 💕',
+    message: 'Cintamu adalah cahaya yang menerangi hidupku.🤗 Setiap senyumanmu memberiku kekuatan dan harapan baru untuk masa depan kita.'
+  },
+  {
+    title: 'Semoga Kita Terus Bersama Selamanya 👨🏻‍👩🏻‍👦🏻‍👦🏻',
+    message: 'Aku berdoa agar perjalanan kita selalu dipenuhi cinta, kesabaran, dan pengertian. Semoga kita tumbuh bersama dalam setiap tantangan yang datang.'
+  },
+  {
+    title: 'Untuk Istriku, Sahabat hidup Sejatiku',
+    message: 'Kau bukan hanya istriku, tapi juga sahabat terbaik yang selalu kuandalkan. Terima kasih sudah menjadi tempatku pulang dan berbagi cerita.'
+  },
+  {
+    title: 'Surat Cinta dari Suamimu 💌',
+    message: `
+      Sayangku tercinta,<br><br>
+
+Di hari yang sangat istimewa ini, ulang tahunmu yang ke-22, aku ingin kau tahu bahwa setiap detik bersamamu adalah anugerah terbesar dalam hidupku. 
+Hari ini bukan hanya tentang perayaan usia, tapi juga tentang merayakan kehadiranmu yang begitu berarti dalam hidupku. 
+Kau adalah cahaya yang menerangi jalanku, tempatku pulang, dan hatiku yang paling tenang.<br><br>
+
+Aku begitu bersyukur dan berbahagia memilikimu. Melihatmu tumbuh menjadi istri yang luar biasa, seorang perempuan tangguh yang penuh kasih sayang, 
+membuat hatiku selalu hangat dan bangga. Kau bukan hanya seorang istri, tapi juga sahabat terbaik, penopang dalam setiap keletihanku, 
+dan ibu dari anak-anak kita yang hebat.<br><br>
+
+Aku tahu menjadi istri dan ibu bukanlah hal yang mudah, apalagi mengurus dua anak kembar laki-laki kita, Zayyan dan Zayhan. 
+Aku tahu kau lelah — sangat lelah — tapi kau tidak pernah mengeluh. Kau tetap tersenyum, tetap sabar, dan tetap menjalankan semuanya dengan hati yang penuh cinta. 
+Itu adalah bentuk perjuangan yang luar biasa, yang membuatku semakin mencintaimu setiap hari. <br><br>
+
+Aku bangga, sangat bangga padamu. Bangga karena kau terus berjuang menjadi istri yang sholehah, meski tantangan terus datang. 
+Bangga karena kau tidak hanya mencintai aku dalam keadaan senang, tapi juga menerimaku apa adanya — dalam kekuranganku, keletihanku, bahkan kesalahanku. 
+Cintamu tulus, dan itu adalah berkah terbesar dalam hidupku.<br><br>
+
+Harapanku sederhana, tapi tulus dari lubuk hati terdalam: 
+semoga kau terus menjadi dirimu yang kuat, lembut, dan penuh iman. 
+Semoga kita terus tumbuh bersama, saling memperbaiki, saling menguatkan, dan terus menjalin cinta di bawah naungan ridha Allah SWT. 
+Aku ingin cinta kita bukan hanya untuk dunia ini, tapi juga hingga ke surga-Nya kelak. 
+Mari terus bersandar satu sama lain, melangkah bersama dalam suka dan duka, dan saling menjaga hingga akhir waktu.<br><br>
+
+Terima kasih karena telah hadir dalam hidupku dan membuat segalanya terasa lebih indah. 
+Terima kasih karena telah memilihku, mencintaiku, dan membangun rumah yang penuh cinta bersamaku.<br><br>
+
+Selamat ulang tahun, istriku yang paling aku sayangi. 
+Semoga setiap doa dan harapanmu dikabulkan oleh Allah, dan semoga kebahagiaan selalu menyertaimu. 
+Aku mencintaimu lebih dari yang bisa kuungkapkan dengan kata-kata, dan aku akan selalu ada untukmu — hari ini, esok, dan selamanya.<br><br>
+
+Peluk dan cium hangat dariku,<br>
+Suamimu yang selalu setia dan mencintaimu tanpa batas 💖 <br>
+aku selalu bangga padamu, dan selalu senang menjadikanmu rumah untuk pulang 💕❤️
+
+    `
+  }
+];
+
+    let current = 0;
+
+    function nextMessage() {
+      const card = document.getElementById('card');
+      card.classList.remove('fade-in');
+      card.classList.add('fade-out');
+
+      setTimeout(() => {
+        current++;
+        const title = document.getElementById('title');
+        const message = document.getElementById('message');
+        const buttons = document.getElementById('buttons');
+
+        if (current < messages.length - 1) {
+          title.textContent = messages[current].title;
+          message.innerHTML = messages[current].message;
+          buttons.innerHTML = `
+            <button onclick="nextMessage()" class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-full transition duration-300">
+              ➡️ Klik ini lagi sayang
+            </button>
+          `;
+        } else {
+          title.textContent = messages[current].title;
+          message.innerHTML = messages[current].message;
+
+          // Ganti tombol jadi "Balas ke WA"
+          const phone = '6282290071319'; // Ganti dengan nomor kamu
+          const pesan = encodeURIComponent("Sayang, aku udah baca ucapannya 😘");
+          buttons.innerHTML = `
+            <a href="https://wa.me/${phone}?text=${pesan}" target="_blank"
+              class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full transition duration-300">
+              💬 kasih tau aku kamu mau apa sayangku
+            </a>
+          `;
+        }
+
+        card.classList.remove('fade-out');
+        card.classList.add('fade-in');
+      }, 500);
+    }
+
+    // Auto-play musik jika klik layar
+    window.addEventListener('click', () => {
+      document.getElementById('bg-music').play().catch(() => {});
+    });
+  </script>
+
+</body>
+</html>
